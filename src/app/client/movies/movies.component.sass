@@ -1,0 +1,202 @@
+@import '../../../shared/variables.sass'
+
+html,body
+  background-color: $secondary
+
+section
+  padding-top: 100px
+  padding-bottom: 100px
+  min-height: calc( 100vh - 58.4px )
+
+.container
+  background-color: $primary
+
+.shadowing
+  box-shadow: 6px 6px 4px $shadow
+  border-radius: 10px
+
+.header-style
+  font-size: 24px
+
+.break-line
+  height: 1px
+  background-color: $secondary
+
+.img-container
+  width: 100%
+  max-height: 175px
+  border-radius: 10px
+  box-shadow: 3px 6px 6px $shadow
+
+.icon-bg
+  background-color: $white
+  border-radius: 50%
+  width: 12px
+  height: 12px
+  position: absolute
+  top: 7px
+  bottom: 0
+  left: 2px
+  right: 0
+  z-index: -1
+
+.icon
+  color: $blue
+  cursor: pointer
+
+.title
+  font-size: 1.2rem
+
+.expand
+  color: $blue
+  padding-left: 30px
+  font-size: 1rem
+  cursor: pointer
+
+.img-sizing
+  height: 222.5px
+  width: 100%
+
+.img-navigate
+  position: relative
+  z-index: 999
+  border-radius: 10px
+  cursor: pointer
+
+.rounded-edges
+  border-radius: 10px
+
+.wrapper-rounded-edges
+  cursor: pointer
+  border-radius: 10px
+
+.positioning
+  margin-top: -2rem
+
+.on-top
+  position: relative
+  z-index: 999
+
+.new-img
+  width: 100%
+  height: calc(100% - 45px)
+  border-radius: 15px
+
+.font-sm
+  font-size: 0.9rem
+
+.reposition
+  max-height: 270px
+
+.position-end
+  position: relative
+  top: -45px
+
+.wrapper-rounded-edges::after
+  content: ""
+  position: absolute
+  top: 0
+  left: -1px
+  right: 0
+  margin-left: 1rem
+  margin-right: 1rem
+  border-radius: 10px
+  height: calc(100% - 45px)
+  width: calc(100% - 2rem + 2px)
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%)
+  box-shadow: 3px 3px 6px $shadow
+
+.wrapper-card:before
+  content: ''
+  position: absolute
+  border-radius: 10px
+  box-shadow: 3px 3px 6px $shadow
+  top: 0
+  left: 15px
+  right: 15px
+  bottom: 0
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,) 100%)
+  z-index: 1
+
+.push-top
+  top: -36px
+  position: relative
+
+.max-height
+  height: 200px
+  width: 100%
+
+.content-card
+  position: absolute
+  bottom: 8px
+  left: 40px
+  z-index: 999
+
+.svg-hint
+  fill: $blue
+  margin-top: -2px
+  margin-left: 20px
+  cursor: pointer
+
+.color-hint
+  color: $hint-color
+
+.text-hint
+  opacity: 0
+
+.inline-p
+  display: inline
+  font-size: 0.9rem
+
+.btn-custom
+  width: 100%
+  font-size: 0.9rem
+  background-color: $blue
+  border-radius: 5px
+  outline: none
+  color: $white
+  border: 0
+  padding: 10px 0px
+
+.spacing
+  padding-left: 1.75rem
+
+ol
+  color: $white
+
+.play-btn
+  font-size: 1rem
+  cursor: pointer
+
+.text-show
+  opacity: 1
+  transition: opacity 0.8s ease-in
+  animation: 0.8s ease-out 0s 1 slideInFromRight forwards
+
+.text-remove
+  transition: opacity 0.5s ease-in
+
+@keyframes slideInFromRight
+  0%
+    transform: translateX(-50%)
+
+  100%
+    transform: translateX(0)
+
+iframe
+  position: absolute
+  border-radius: 10px
+
+::ng-deep .modal-content
+  background-color: transparent
+  border: none
+  border-radius: 10px
+  padding-bottom: calc(100% * 9 / 16)
+  margin: auto
+  height: 0px
+  width: 100%
+
+@media (min-width: 576px)
+::ng-deep .modal-dialog
+  max-width: 50%
+  margin: 1.75rem auto

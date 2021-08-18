@@ -1,0 +1,173 @@
+@import '../../../../shared/variables.sass'
+
+html,body
+  background-color: $secondary
+
+section
+  padding-top: 100px
+  padding-bottom: 100px
+
+.desc-size
+  font-size: 14px
+
+.container
+  background-color: $primary
+
+.shadowing
+  box-shadow: 6px 6px 4px $shadow
+  border-radius: 10px
+
+.disabled
+  cursor: not-allowed
+  background: $dark-gray !important
+
+.color-blue
+  color: $hint-color
+
+.bg-color-secondary
+  background-color: $secondary
+
+.custom-icon
+  color: $blue
+  font-size: 38px
+  z-index: 999
+
+.centered-class
+  margin-top: -30px
+
+.icon-success
+  color: $color-success
+  font-size: 30px
+  vertical-align: middle
+  padding: 0
+
+.confirm-title
+  display: inline-block
+  vertical-align: middle
+  font-size: 18px
+  margin: 0
+
+.button-confirm
+  background-color: $blue
+  padding: 8px 0px
+  color: $white
+  border: 2px solid $blue
+  width: 100%
+  border-radius: 10px
+  outline: none
+
+.button-reject
+  background-color: transparent
+  padding: 8px 0px
+  width: 100%
+  color: $dark-gray
+  border: 2px solid $dark-gray
+  border-radius: 10px
+  outline: none
+
+.confirm-text
+  vertical-align: middle
+  color: $dark-gray
+
+.bg-overlay
+  position: absolute
+  top: 17px
+  bottom: 0
+  left: calc( 50% - 12px )
+  right: 0
+  width: 25px
+  height: 25px
+  background-color: $white
+  border-radius: 50%
+  z-index: 1
+
+fa-icon.ng-fa-icon.custom-icon
+  position: relative
+
+.btn-custom
+  margin: 10px 0px 0px 0px
+  border-radius: 60px
+  background-color: $blue
+  border: none
+  color: $white
+  padding: 5px 20px 5px 20px
+
+.btn-custom:hover, .btn-custom:focus
+  background-color: $blue-focus
+
+fa-icon
+  padding-right: 5px
+  color: $blue
+
+.header-class
+  font-size: 24px
+  font-weight: 400
+
+.dates
+  font-weight: 500
+
+.img-container
+  padding-top: 170px
+  padding-bottom: 20px
+  border-radius: 0px 10px 0px 10px
+  background-size: 100% 100% !important
+
+.content-test
+  height: 40px
+  padding-top: 10px
+  background: transparent
+  border-radius: 50% 50% 0% 0%/100% 100% 0% 0%
+  -webkit-box-shadow: 0px -5px 3px $blue-focus
+  -moz-box-shadow: 0px -5px 3px $blue-focus
+  box-shadow: 0px -5px 3px $blue-focus
+
+.screen
+  font-size: 20px
+  color: $grey
+
+.svg-selected
+  fill: $blue
+
+.svg-available
+  fill: $dark-gray
+
+.svg-taken
+  fill: $danger
+
+svg
+  width: 38px
+  height: 30px
+  cursor: pointer
+
+.col-10.offset-1.text-center
+  display: flex
+  justify-content: space-evenly
+  padding-left: 50px
+  padding-right: 50px
+
+iframe
+  position: absolute
+  border-radius: 10px
+
+.confirm-modal
+  background-color: $primary
+  min-width: 400px
+  border-radius: 5px
+  padding: 16px 24px
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+::ng-deep .modal-content
+  background-color: transparent
+  border: none
+  border-radius: 10px
+  padding-bottom: calc(100% * 9 / 16)
+  margin: auto
+  height: 0px
+
+@media (min-width: 576px)
+::ng-deep .modal-dialog
+  max-width: 50%
+  margin: 1.75rem auto

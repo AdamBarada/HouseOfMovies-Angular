@@ -1,0 +1,239 @@
+@import '../../../../shared/variables.sass'
+
+body
+  background-color: $secondary
+  font-family: 'Roboto', sans-serif
+  overflow: hidden
+
+.btn-custom
+  border-radius: 60px
+  background-color: #010058
+  border: none
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7)
+  color: $white
+  font-size: 20px
+  padding: 10px 20px 10px 20px
+  transition: transform 0.2s ease-in
+
+.col-12.text-center.mb-3
+  margin-top: -12%
+
+fa-icon
+  vertical-align: -0.125rem
+
+.btn-custom:hover, .btn-custom:focus
+  transform: scale(1.02)
+
+.bg-container
+  position: relative
+  top: -100px
+  transform: scale(0.55)
+  background: url("https://www.blissfullemon.com/wp-content/uploads/2018/09/HauntedHouseBackground.png")
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 95% 100%
+  margin: 0px auto
+
+.foregroundimg
+  position: relative
+  width: 100%
+  z-index: 5
+
+.position
+  position: relative
+  top: 0%
+
+.errorcode
+  margin-top: -25%
+  z-index: 1000
+  font-family: 'Creepster', cursive
+  color: white
+  text-align: center
+  font-size: 4rem
+  letter-spacing: 0.1em
+
+.errortext
+  margin-top: -17%
+  color: $grey
+  font-size: 1.2rem
+
+.bat
+  opacity: 0
+  position: absolute
+  width: 100vw
+  height: 100vh
+  transform-origin: center
+  z-index: 3
+
+.bat:nth-child(1)
+  top: 15%
+  left: 13%
+  transform: scale(0.5)
+  animation: 13s 1s flyBat1 infinite linear
+
+.bat:nth-child(2)
+  top: -5%
+  left: 0%
+  transform: scale(0.3)
+  animation: 8s 4s flyBat2 infinite linear
+
+.bat:nth-child(3)
+  top: 5%
+  left: 5%
+  transform: scale(0.4)
+  animation: 12s 2s flyBat3 infinite linear
+
+.body
+  position: relative
+  width: 50px
+  top: 12px
+
+.wing
+  width: 150px
+  position: relative
+  transform-origin: right center
+
+.leftwing
+  left: 30px
+  animation: 0.8s flapLeft infinite ease-in-out
+
+.rightwing
+  left: -180px
+  transform: scaleX(-1)
+  animation: 0.8s flapRight infinite ease-in-out
+
+@keyframes flapLeft
+  0%
+    transform: rotateZ(0)
+  50%
+    transform: rotateZ(10deg) rotateY(40deg)
+  100%
+    transform: rotateZ(0)
+
+@keyframes flapRight
+
+  0%
+    transform: scaleX(-1) rotateZ(0)
+  50%
+    transform: scaleX(-1) rotateZ(10deg) rotateY(40deg)
+  100%
+    transform: scaleX(-1) rotateZ(0)
+
+@keyframes flyBat1
+  0%
+    opacity: 1
+    transform: scale(0.5)
+  25%
+    opacity: 1
+    transform: scale(0.5) translate(-50%, -40%)
+  50%
+    opacity: 1
+    transform: scale(0.5) translate(30%, -60%)
+  75%
+    opacity: 1
+    transform: scale(0.5) translate(45%, 30%)
+  100%
+    opacity: 1
+    transform: scale(0.5) translate(0%, 0%)
+
+@keyframes flyBat2
+  0%
+    opacity: 1
+    transform: scale(0.3)
+  25%
+    opacity: 1
+    transform: scale(0.3) translate(50%, -40%)
+  50%
+    opacity: 1
+    transform: scale(0.3) translate(-50%, -70%)
+  75%
+    opacity: 1
+    transform: scale(0.3) translate(-40%, 20%)
+  100%
+    opacity: 1
+    transform: scale(0.3) translate(10%, 40%)
+
+@keyframes flyBat3
+  0%
+    opacity: 1
+    transform: scale(0.4)
+  25%
+    opacity: 1
+    transform: scale(0.4) translate(-50%, -40%)
+  50%
+    opacity: 1
+    transform: scale(0.4) translate(30%, -60%)
+  75%
+    opacity: 1
+    transform: scale(0.4) translate(-40%, 10%)
+  100%
+    opacity: 1
+    transform: scale(0.4) translate(10%, 20%)
+
+@media only screen and (max-width: 770px)
+
+  .bat:nth-child(1)
+    transform: scale(0.3)
+    top: -20%
+    left: 0
+
+  @keyframes flyBat1
+    0%
+      opacity: 1
+      transform: scale(0.3)
+    25%
+      opacity: 1
+      transform: scale(0.3) translate(-50%, -40%)
+    50%
+      opacity: 1
+      transform: scale(0.3) translate(40%, -70%)
+    75%
+      opacity: 1
+      transform: scale(0.3) translate(45%, 20%)
+    100%
+      opacity: 1
+      transform: scale(0.3) translate(0%, 0%)
+
+  .bat:nth-child(2)
+    transform: scale(0.2)
+    top: -38%
+    left: 0%
+
+  @keyframes flyBat2
+    0%
+      opacity: 1
+      transform: scale(0.2)
+    25%
+      opacity: 1
+      transform: scale(0.2) translate(75%, -60%)
+    50%
+      opacity: 1
+      transform: scale(0.2) translate(-75%, -100%)
+    75%
+      opacity: 1
+      transform: scale(0.2) translate(-60%, 30%)
+    100%
+      opacity: 1
+      transform: scale(0.2) translate(15%, 60%)
+
+  .bat:nth-child(3)
+    transform: scale(0.1)
+    top: -30%
+    left: -10%
+
+  @keyframes flyBat3
+    0%
+      opacity: 1
+      transform: scale(0.2)
+    25%
+      opacity: 1
+      transform: scale(0.2) translate(-100%, -80%)
+    50%
+      opacity: 1
+      transform: scale(0.2) translate(60%, -100%)
+    75%
+      opacity: 1
+      transform: scale(0.2) translate(-80%, 40%)
+    100%
+      opacity: 1
+      transform: scale(0.2) translate(20%, 40%)

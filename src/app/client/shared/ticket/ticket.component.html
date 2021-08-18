@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body *ngFor="let seat of reservation?.seatsReserved">
+    <div class="container-fluid pr-0 pl-0">
+        <div class="holes-top"></div>
+        <div class="row">
+            <div class="col-12">
+                <p class="header">House Of Movies Presents: </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <p class="title"> {{reservation?.movie?.title}} </p>
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="col-12 mt-5 p-0">
+                <img [src]="reservation?.movie?.landscapeImg || '' | safe">
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Room</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Row</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Seat</p>
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{reservation?.roomName}}</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{seat.row}}</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{seat.number}}</p>
+            </div>
+        </div>
+        <div class="break-line mt-5"></div>
+        <div class="row m-0 p-0">
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Price</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Date</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>Time</p>
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{(reservation?.total || 0)/(reservation?.seatsReserved?.length || 0) | currency}}</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{reservation?.date | date}}</p>
+            </div>
+            <div class="col-4 mt-5 p-0 text-center">
+                <p>{{reservation?.date | date: 'shortTime'}}</p>
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="holes-below"></div>
+        </div>
+        <div class="break-line mt-5"></div>
+        <div class="row m-0 p-0">
+            <div class="col-12 mt-5">
+                <table class="barcode mt-2">
+                    <tr class="barcode-holder" *ngFor="let val of code.split('')">
+                        <td [ngClass]="val == '0' ? 'color-white' : 'color-black'"></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="row m-0 p-0">
+            <div class="col-12 mt-5">
+                <table class="numbers">
+                    <tr class="numbers-spacing">
+                        <td>9</td>
+                        <td>1</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>7</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>7</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>1</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>2</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

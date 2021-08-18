@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <ngx-spinner></ngx-spinner>
+    <app-sidebar (checked)="setChecked($event)"></app-sidebar>
+    <section [class.new-margin]="isChecked">
+        <div class="container-fluid">
+            <div class="row pl-3 pt-3">
+                <div class="col-4">
+                    <p class="header-style pt-3 pr-3 pb-3 pl-0 m-0"> Overview <span>
+                      <svg class="svg-hint" (click) = "isEnabled = !isEnabled"  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+                    </span></p>
+                </div>
+                <div class="col-8 my-auto">
+                    <p class="p-3 pr-5 m-0 text-right text-hint" [class.text-show]="isEnabled" [class.text-remove]="!isEnabled"><span class="color-hint">Take a look</span> at the numbers and <span class="color-hint">check</span> your business state.
+                    </p>
+                </div>
+            </div>
+            <div class="row pb-5">
+                <div class="col break-line"></div>
+            </div>
+            <div class="row pr-5">
+                <div class="col-lg-8">
+                    <div class="row h-100">
+                        <div class="col-12 h-100 flex-height">
+                            <div class="row pr-3">
+                                <div class="col-lg-4 cards pr-0 col-md-6">
+                                    <div class="container pt-3 pb-2  background-primary shadow rounded-edges">
+                                        <p>
+                                            <fa-icon [icon]="faDollar"></fa-icon> Total Income</p>
+                                        <p class="card-info color-success">{{income | currency}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 cards pr-0 col-md-6">
+                                    <div class="container pt-3 pb-2 background-primary shadow rounded-edges">
+                                        <p>
+                                            <fa-icon [icon]="faTicket"></fa-icon> Total Reservations</p>
+                                        <p class="card-info font-sm"><span class="color-hint">{{totalRes}}</span></p>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 cards pr-0 col-md-6">
+                                    <div class="container pt-3 pb-2 background-primary shadow rounded-edges">
+                                        <p>
+                                            <fa-icon [icon]="faUsers"></fa-icon> Total Users</p>
+                                        <p class="card-info font-sm"><span class="color-hint">{{totalUsers}}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row flex-grow-1 pt-4 pr-3 pl-3">
+                                <div class="col-12 background-primary shadow rounded-edges pt-3">
+                                    <p>
+                                        Reservations Recently Made
+                                    </p>
+                                    <div class="row pb-5">
+                                        <div class="col break-line"></div>
+                                    </div>
+                                    <div class="row pr-5 pb-3" style="height: calc(100% - 89px);">
+                                        <div class="col-12">
+                                            <ngx-charts-line-chart style="fill:#ffffff;" [results]="chartsData" [xAxis]="true" [yAxis]="true" [showGridLines]="false" [showXAxisLabel]="true" [showYAxisLabel]="true" [yAxisLabel]="'Reservations'" [xAxisLabel]="'Day'">
+                                            </ngx-charts-line-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 pb-3 background-primary shadow rounded-edges">
+                    <div class="col-12 pt-3">
+                        <p>
+                            Most Viewed Movies
+                        </p>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col break-line"></div>
+                    </div>
+                    <div class="col-12 my-auto">
+                        <div class="row pb-2" *ngFor="let movie of bestSellingMovies;">
+                            <div class="col-8 my-auto">
+                                <img class="best-selling-img display-inline" src={{movie.landscapeImg}}>
+                                <p class="m-0 display-inline font-sm align-middle">{{movie.title | shorten: 15}}</p>
+                            </div>
+                            <div class="col-4 my-auto text-right">
+                                <p class="m-0 display-inline font-sm"> {{movie.viewers}} views </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row pr-5 pt-3 pb-4">
+                <div class="col-lg-8">
+                    <div class="row h-100">
+                        <div class="col-12 h-100 flex-height">
+                            <div class="row pr-3 pl-3">
+                                <div class="col-12 pb-2 background-primary shadow rounded-edges pt-3">
+                                    <p>
+                                        Most Loyal Customers
+                                    </p>
+                                    <div class="row pb-3">
+                                        <div class="col break-line"></div>
+                                    </div>
+                                    <div class="col-12 my-auto">
+                                        <div class="row pb-2" *ngFor="let user of loyalUsers">
+                                            <div class="col-8 my-auto">
+                                                <p class="m-0 display-inline font-sm align-middle">{{user.firstName}} {{user.lastName}}</p>
+                                            </div>
+                                            <div class="col-4 my-auto text-right">
+                                                <p class="m-0 display-inline font-sm"> {{user.nbReservations}} Total Reservations </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row flex-grow-1 pt-4 pr-3 pl-3">
+                                <div class="col-12 background-primary shadow rounded-edges pt-3">
+                                    <p>
+                                        Movies Distribution Per Category
+                                    </p>
+                                    <div class="row">
+                                        <div class="col break-line"></div>
+                                    </div>
+                                    <div class="row pr-5 pb-3" style="height: calc(100% - 89px);">
+                                        <div class="col-12">
+                                            <ngx-charts-advanced-pie-chart style="fill:#ffffff;" [results]="pieChartData">
+                                            </ngx-charts-advanced-pie-chart>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 pb-3 background-primary shadow rounded-edges">
+                    <div class="col-12 pt-3">
+                        <p>
+                            Upcoming Movies
+                        </p>
+                    </div>
+                    <div class="row pb-3">
+                        <div class="col break-line"></div>
+                    </div>
+                    <div class="col-12 my-auto">
+                        <div class="row pb-3" *ngFor="let movie of upcomingMovies;">
+                            <div class="col-8 my-auto">
+                                <img class="best-selling-img display-inline" src={{movie.landscapeImg}}>
+                                <p class="m-0 display-inline font-sm align-middle">{{movie.title | shorten: 15}}</p>
+                            </div>
+                            <div class="col-4 my-auto text-right">
+                                <p class="m-0 display-inline font-sm"> {{movie.releaseDate | date: 'MMM d, y'}} </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>

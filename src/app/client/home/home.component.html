@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body (window:resize)="onScroll($event)">
+    <ng-template #template>
+        <iframe width="100%" height="100%" [src]="currentTrailer | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </ng-template>
+    <app-header></app-header>
+    <ngx-spinner></ngx-spinner>
+    <section class="home" *ngIf="loadedMovies[37]?.landscapeImg" [style.background]="'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(' +loadedMovies[37]?.landscapeImg+') no-repeat center'">
+        <div class="container-cust">
+            <div class="row vh-100">
+                <div class="col-7 my-auto">
+                    <div class="row">
+                        <div class="col-12">
+                            <h3>{{loadedMovies[37]?.title}}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="custom-col">
+                            <p>
+                                <fa-icon [icon]="faClock" class="color-blue" style="margin-right: 10px;"></fa-icon>Duration: {{loadedMovies[37]?.duration}} mins</p>
+                        </div>
+                        <div class="custom-col">
+                            <p>
+                                <fa-icon [icon]="faCalendarAlt" class="color-blue" style="padding-right: 10px;"></fa-icon>Year: {{loadedMovies[37]?.releaseDate | date:'y'}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{loadedMovies[37]?.description}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button class="btn-custom" (click)="openModal(template, loadedMovies[37]?.trailer)"><fa-icon [icon]="faPlay"></fa-icon> Watch Trailer</button>
+                            <button class="btn-custom" routerLink="/screenings" [queryParams]="{movie: loadedMovies[37]?.title}"><fa-icon [icon]="faEye"></fa-icon> View Screenings</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 offset-1 my-auto pl-5">
+                    <div class="row">
+                        <div class="col-12 pr-0">
+                            <div class="mb-5">
+                                <div class="row mr-0">
+                                    <div class="col-4 p-0">
+                                        <img src="{{loadedMovies[23]?.portraitImg}}" (click)="onImageClicked(loadedMovies[23]?.id)" class="img-fluid rounded-portrait">
+                                    </div>
+                                    <div class="max-height col-8 mt-auto" *ngIf="loadedMovies[23]?.landscapeImg" [style.background]="'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(' + loadedMovies[23]?.landscapeImg+')'">
+                                        <div class="holder">
+                                            <p style="font-weight:bold"> {{loadedMovies[23]?.title}}</p>
+                                            <p class="card-text" align="justify">{{loadedMovies[23]?.description || '' | shorten:176}}</p>
+                                            <div class="button-holder">
+                                                <button class="btn-trans" (click)="openModal(template, loadedMovies[23]?.trailer)"><fa-icon [icon]="faPlay"></fa-icon> Watch Trailer</button>
+                                                <button class="btn-trans" routerLink="/screenings" [queryParams]="{movie: loadedMovies[23]?.title}"><fa-icon [icon]="faEye"></fa-icon> View Screenings</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pr-0">
+                            <div>
+                                <div class="row mr-0">
+                                    <div class="col-4 p-0">
+                                        <img src="{{loadedMovies[40]?.portraitImg}}" class="img-fluid rounded-portrait">
+                                    </div>
+                                    <div class="max-height col-8 mt-auto" *ngIf="loadedMovies[40]?.landscapeImg" [style.background]="'linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(' + loadedMovies[40]?.landscapeImg +')'">
+                                        <div class="holder">
+                                            <p style="font-weight:bold"> {{loadedMovies[40]?.title}}</p>
+                                            <p class="card-text" align="justify">{{loadedMovies[40]?.description || '' | shorten:176}}</p>
+                                            <div class="button-holder">
+                                                <button class="btn-trans" (click)="openModal(template, loadedMovies[40]?.trailer)"><fa-icon [icon]="faPlay"></fa-icon> Watch Trailer</button>
+                                                <button class="btn-trans" routerLink="/screenings" [queryParams]="{movie: loadedMovies[40]?.title}"><fa-icon [icon]="faEye"></fa-icon> View Screenings</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="middle">
+        <div class="positioning">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img src="{{loadedMovies[34]?.landscapeImg}}" class="img-fluid" style="border-radius: 10px;">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, loadedMovies[34]?.trailer)"></fa-icon> {{loadedMovies[34]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img src="{{loadedMovies[31]?.landscapeImg}}" class="img-fluid" style="border-radius: 10px;">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, loadedMovies[31]?.trailer)"></fa-icon> {{loadedMovies[31]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img src="{{loadedMovies[51]?.landscapeImg}}" class="img-fluid" style="border-radius: 10px;">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, loadedMovies[51]?.trailer)"></fa-icon> {{loadedMovies[51]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-12 mx-auto text-center mb-3">
+                <div class="tab-indicator" [style.left.px]='indicatorOffset' [style.width.px]='indicatorWidth'></div>
+                <a class="spaced" [class.color-primary]="tabIndex === 0" #firstEl (click)="onActive($event);">All</a>
+                <a class="spaced" [class.color-primary]="tabIndex === 1" #secondEl (click)="onActive($event);">Coming Soon</a>
+                <a class="spaced pr-0" [class.color-primary]="tabIndex === 2" #thirdEl (click)="onActive($event);">Latest</a>
+            </div>
+        </div>
+    </section>
+    <section class="carousel pt-5 pb-5 ">
+        <div class="row" *ngIf="displayedMovies.length === 0">
+            <div class="col text-center">
+                <p>No movies available.</p>
+            </div>
+        </div>
+        <div class="container pt-5" *ngIf="displayedMovies.length !== 0">
+            <owl-carousel-o [options]="customOptions">
+                <ng-template carouselSlide *ngFor="let movie of displayedMovies">
+                    <div class="wrapper-rounded-edges ">
+                        <img src="{{movie.portraitImg}} " height="360px " class="rounded-edges ">
+                    </div>
+                    <div class="wrapper-overlay " (click)="onImageClicked(movie.id) "></div>
+                    <div class="wrapper-buttons ">
+                        <div class="button-config-left ">
+                            <fa-icon [icon]="faPlayCircle " class="color-blue " style="font-size:24px; " (click)="openModal(template, movie?.trailer) "></fa-icon>
+                        </div>
+                        <div class="button-config-right ">
+                            <fa-icon [icon]="faEye" routerLink="/screenings" [queryParams]="{movie: movie?.title}" class="color-blue " style="font-size:24px; "></fa-icon>
+                        </div>
+                    </div>
+                    <div class="wrapper-details ">
+                        <p class="m-0 ">{{movie.title | shorten:25}}</p>
+                        <p class="color-primary ">{{printCategories(movie.categories)}}</p>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+        <div class="container pt-2 ">
+            <p class="header pb-2 "> Recommended</p>
+            <owl-carousel-o [options]="customOptions ">
+                <ng-template carouselSlide *ngFor="let movie of loadedMovies.slice(15, 35)">
+                    <div class="wrapper-rounded-edges ">
+                        <img src="{{movie.portraitImg}} " height="360px " class="rounded-edges ">
+                    </div>
+                    <div class="wrapper-overlay " (click)="onImageClicked(movie.id)"></div>
+                    <div class="wrapper-buttons">
+                        <div class="button-config-left ">
+                            <fa-icon [icon]="faPlayCircle " (click)="openModal(template, movie?.trailer) " class="color-blue " style="font-size:24px; "></fa-icon>
+                        </div>
+                        <div class="button-config-right ">
+                            <fa-icon [icon]="faEye " routerLink="/screenings" [queryParams]="{movie: movie?.title}" class="color-blue " style="font-size:24px; "></fa-icon>
+                        </div>
+                    </div>
+                    <div class="wrapper-details ">
+                        <p class="m-0 ">{{movie.title | shorten:25}}</p>
+                        <p class="color-primary ">{{printCategories(movie.categories)}} </p>
+                    </div>
+                </ng-template>
+            </owl-carousel-o>
+        </div>
+
+    </section>
+
+    <app-footer></app-footer>
+</body>
+
+</html>

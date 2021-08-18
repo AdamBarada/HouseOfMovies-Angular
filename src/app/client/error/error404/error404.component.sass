@@ -1,0 +1,73 @@
+@import '../../../../shared/variables.sass'
+
+body
+  display: flex
+  min-height: 100vh
+  background-color: $primary
+  background: radial-gradient(at 50% -20%, $primary, $secondary) fixed
+
+.error-title
+  font-size: 26px
+
+.error-desc
+  font-weight: 300
+  color: $lighter-grey
+
+.btn-custom
+  margin-top: 20px
+  border-radius: 60px
+  background-color: #010058
+  border: none
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.7)
+  color: $white
+  font-size: 20px
+  padding: 10px 20px 10px 20px
+  transition: transform 0.2s ease-in
+
+fa-icon
+  vertical-align: -0.125rem
+
+.btn-custom:hover, .btn-custom:focus
+  transform: scale(1.02)
+
+#handboy
+  animation: swing ease-in-out 1.3s infinite alternate
+  transform-origin: 98% 98%
+  transform-box: fill-box
+
+#girllight
+  animation: swing ease-in-out 1.3s infinite alternate
+  transform-origin: 0% 97%
+  transform-box: fill-box
+
+#hairgirl
+  animation: swinghair ease-in-out 1.3s infinite alternate
+  transform-origin: 60% 0%
+  transform-box: fill-box
+
+#zero
+  transform-origin: bottom
+  transform-box: fill-box
+
+#Vector_26, #Vector_25, #Vector_24
+  fill: #2f2dda
+
+#Vector_56, #Vector_6, #Vector_97
+  fill: #47163a
+
+#Vector_2, #Vector_10, #Vector_9, #Vector, #Vector_11, #Vector_12
+  fill: #010058
+
+@keyframes swing
+  0%
+    transform: rotate(10deg)
+
+  100%
+    transform: rotate(-10deg)
+
+@keyframes swinghair
+  0%
+    transform: rotate(6deg)
+
+  100%
+    transform: rotate(-6deg)

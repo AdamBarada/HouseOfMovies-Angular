@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Header</title>
+</head>
+
+<body>
+    <div class="wrapper" [class.navbar-sticky]="isOpaque">
+        <nav class="navbar" (scroll)="onWindowScroll($event)">
+            <input type="checkbox" id="show-search" (change)="setChecked($event)">
+            <input type="checkbox" id="show-menu" (change)="setChecked($event)">
+            <label for="show-menu" class="menu-icon"><fa-icon [icon]="faBars"></fa-icon></label>
+            <div class="content">
+                <div class="logo">
+                    <img style="cursor:pointer;" src="../../../../assets/images/logo.png" (click)="navigateToHome()">
+                </div>
+                <ul class="links">
+                    <li><a routerLink='/home'>Home</a></li>
+                    <li><a routerLink='/movies'>Movies</a></li>
+                    <li *ngIf="isAuth"><a href="/reservations">Reservations</a></li>
+                    <li><a href="/screenings">Screenings</a></li>
+                    <li (click)="onAuth()"><a> {{isAuth ? "Logout" : "Login" }}</a></li>
+                </ul>
+            </div>
+            <label for="show-search" class="search-icon"><fa-icon [icon]="faSearch"></fa-icon></label>
+            <form class="search-box" #f="ngForm" (ngSubmit)="onSubmit(f)">
+                <input type="text" name="search" ngModel placeholder="Search for available movies...">
+                <button type="submit" class="go-icon"><fa-icon [icon]="faLongArrowAltRight"></fa-icon></button>
+            </form>
+        </nav>
+    </div>
+</body>
+
+</html>

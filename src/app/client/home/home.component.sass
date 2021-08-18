@@ -1,0 +1,274 @@
+@import '../../../shared/variables.sass'
+
+input[type=search]
+  width: 30%
+  color: $lighter-grey
+  box-shadow: 3px 3px 6px $shadow
+  border-radius: 60px
+  padding: 7px 20px
+  border: 0
+  caret-color: $blue
+  color: $primary
+  margin-bottom: 0px
+
+input:focus, input:active
+  border: 0
+  box-shadow: 0
+  outline: 0
+
+fa-icon
+  cursor: pointer
+
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration
+  -webkit-appearance: none
+
+.home
+  display: flex
+  height: 100vh
+  color: #fff
+  min-height: 500px
+  background-size: cover
+  background-attachment: fixed
+
+iframe
+  position: absolute
+  border-radius: 10px
+
+::ng-deep .modal-content
+  background-color: transparent
+  border: none
+  border-radius: 10px
+  padding-bottom: calc(100% * 9 / 16)
+  margin: auto
+  height: 0px
+  width: 100%
+
+.holder
+  height: 60%
+  padding: 10px 10px 20px 10px
+
+.max-height
+  max-height: 250px
+  background-size: 100% 100% !important
+
+.button-holder
+  display: flex
+  justify-content: space-between
+
+.middle
+  background-color: $primary
+
+.positioning
+  position: relative
+  top: -8vh
+
+.container-cust
+  margin-left: 5% !important
+  height: 100%
+  width: calc(95% - 15px)
+
+fa-icon
+  padding-right: 5px
+
+.btn-custom
+  margin: 20px 20px 0px 0px
+  border-radius: 60px
+  background-color: $blue
+  border: none
+  color: $white
+  padding: 10px 20px 10px 20px
+
+.btn-custom:hover, .btn-custom:focus
+  background-color: $blue-focus
+
+.btn-trans
+  background-color: transparent
+  font-size: 12px
+  border: none
+  color: $white
+  padding: 0px 10px
+
+.color-blue
+  color: $blue !important
+
+.custom-col
+  padding-right: 15px
+  padding-left: 15px
+
+.rounded-portrait
+  border-radius: 10px 10px 0px 10px
+
+.content
+  position: absolute
+  top: 0%
+  left: 0%
+  padding: 5px 5px 0px 10px
+  max-height: 90%
+  overflow-y: auto
+  z-index: 999
+
+.content-card
+  position: absolute
+  bottom: 8px
+  left: 40px
+  z-index: 999
+
+.card-text
+  font-size: 12px
+
+.search-icon
+  color: $primary
+  margin-left: -30px
+
+::placeholder
+  color: $primary
+
+.wrapper-card:before
+  content: ''
+  position: absolute
+  border-radius: 10px
+  box-shadow: 3px 3px 6px $shadow
+  top: 0
+  left: 15px
+  right: 15px
+  bottom: 0
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,) 100%)
+  z-index: 1
+
+.icon-bg
+  background-color: $white
+  border-radius: 50%
+  width: 12px
+  height: 12px
+  position: absolute
+  top: 7px
+  bottom: 0
+  left: 2px
+  right: 0
+  z-index: -1
+
+.icon
+  color: $blue
+
+.spaced
+  padding: 0px 40px
+  cursor: pointer
+
+.tab-indicator
+  position: absolute
+  height: 4px
+  bottom: -1rem
+  border-radius: 10px
+  background: $blue
+  transition: all 500ms ease-in-out
+
+.icon-pos
+  position: absolute
+  left: 62vw
+  right: 0
+  top: 27px
+  bottom: 0
+  width: 38px
+  height: 38px
+
+.positioning-2
+  position: relative
+  bottom: -18px
+  z-index: 2
+
+.carousel
+  background-color: $secondary
+
+.rounded-edges
+  border-radius: 10px
+
+.color-primary
+  color: $hint-color !important
+
+.wrapper-rounded-edges
+  border-radius: 10px
+  box-shadow: 3px 3px 6px $shadow
+  width: 240px !important
+
+.wrapper-overlay
+  border-radius: 10px
+  margin-top: calc( -360px - 1rem )
+  position: relative
+  height: 360px
+  width: 240px
+  cursor: pointer
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,1) 100%)
+
+.wrapper-buttons
+  position: relative
+  margin-top: -3rem
+
+.a-wrapper
+  width: 240px
+  height: 360px
+
+.wrapper-details
+  margin-top: 3.6rem
+  padding-left: 0.5rem
+
+img.rounded-edges
+  margin-bottom: 16px
+
+p.ng-star-inserted
+  text-align: left
+  padding-left: 10px
+  margin: 0
+
+::ng-deep .owl-carousel .owl-item img
+  width: 240px !important
+
+::ng-deep .owl-theme .owl-dots .owl-dot span
+  background: $blue !important
+
+::ng-deep .owl-theme .owl-dots .owl-dot.active span,
+.owl-theme .owl-dots .owl-dot:hover span
+  background: $blue-focus !important
+
+::ng-deep .owl-theme .owl-nav [class*=owl-]
+  color: $blue !important
+  background: $blue !important
+
+::ng-deep .owl-theme .owl-nav [class*=owl-]:hover
+
+  color: $blue-focus !important
+  background: $blue-focus !important
+
+::ng-deep .owl-nav
+  margin-top: 10px
+  position: relative
+  display: flex
+  justify-items: stretch
+  justify-content: space-between
+  top: -260px
+  margin-left: -50px
+  margin-right: -50px
+
+.header
+  font-size: 24px
+
+.button-config-left
+  position: absolute
+  display: flex
+  justify-content: space-between
+  z-index: 2
+  left: 20px
+
+.button-config-right
+  position: absolute
+  display: flex
+  justify-content: space-between
+  z-index: 2
+  left: 190px
+
+@media (min-width: 576px)
+::ng-deep .modal-dialog
+  max-width: 50%
+  margin: 1.75rem auto

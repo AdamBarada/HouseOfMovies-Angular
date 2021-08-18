@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+
+<body>
+    <ngx-spinner></ngx-spinner>
+    <div class=" row pr-3 pl-3 p-2">
+        <p style="font-size: 22px" class="header-content pt-5 p-2 ">
+            Join over 1 thousand movie lover and watch your favorite movies in our theatres.
+        </p>
+    </div>
+    <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3" [ngClass]="{errorClass : (!emailCtrl.valid && emailCtrl.touched)}">
+                    <fa-icon [icon]="faEnvelope "></fa-icon>
+                    <input type="email" name="email" [popover]="(emailCtrl.value) ? 'Wrong input. Check your email.' : 'This field is required.'" triggers="" [isOpen]="(!emailCtrl.valid && emailCtrl.touched) || false" ngModel class="form-control" #emailCtrl="ngModel" required
+                        autocomplete="off" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3" [ngClass]="{errorClass : (!passCtrl.valid && passCtrl.touched)}">
+                    <fa-icon [icon]="faLock"></fa-icon>
+                    <input type="password" name="password" [popover]="(passCtrl.value) ? 'Password should be longer.' : 'This field is required.'" triggers="" [isOpen]="(!passCtrl.valid && passCtrl.touched) || false" #passCtrl="ngModel" ngModel minlength="5" required class="form-control"
+                        placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0">
+                <label class="checkbox-container">Remember Me
+            <input type="checkbox" (change)="setChecked($event)">
+            <span class="checkmark"></span>
+          </label>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2 mx-auto">
+            <div class="col text-center">
+                <input type="submit" [disabled]="!f.valid" class="btn" value="Login Now">
+            </div>
+        </div>
+    </form>
+    <div class="row pr-3 pl-3 p-2 mx-auto">
+        <div class="col text-center">
+            <p class="pt-3"> Don't have an account yet? <a routerLink="../signup" class="signup">Sign up.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

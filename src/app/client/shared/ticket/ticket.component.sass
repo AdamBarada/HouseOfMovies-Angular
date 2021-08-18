@@ -1,0 +1,113 @@
+@import '../../../../shared/variables.sass'
+
+$circle-size: 100
+
+img
+  width: 100%
+  height: 450px
+
+p
+  font-size: 40px
+
+table
+  border-collapse: collapse
+  margin: 0 auto
+
+td
+  width: 6px
+  height: 50px
+
+.numbers
+  td
+    width: 40px
+    font-size: 35px
+    color: $white
+    text-align: center
+
+.numbers-spacing
+  display: flex
+  justify-content: space-between
+
+.barcode-holder
+  display: contents
+
+.container-fluid
+  background-color: $primary
+  padding-top: 75px
+  min-height: 100vh
+
+.holes-top
+  height: $circle-size + px
+  width: $circle-size + px
+  background-color: $white
+  border-radius: 50%
+  position: absolute
+  left: 50%
+  margin-left: ($circle-size / -2) + px
+  top: ($circle-size / -2) + px
+
+  &:before,
+  &:after
+    content: ''
+    height: $circle-size + px
+    width: $circle-size + px
+    background-color: $white
+    position: absolute
+    border-radius: 50%
+
+  &:before
+    left: -50vw
+
+  &:after
+    left: 50vw
+
+.holes-below
+  height: $circle-size + px
+  width: $circle-size + px
+  background-color: $white
+  border-radius: 50%
+  position: absolute
+  left: 0%
+  margin-left: ($circle-size / -2) + px
+
+  &:after
+    content: ''
+    height: $circle-size + px
+    width: $circle-size + px
+    background-color: $white
+    position: absolute
+    border-radius: 50%
+    left: 100vw
+
+.color-white
+  background-color: $white
+
+.color-black
+  background-color: #000000
+
+.barcode-div
+  display: inline-block
+  width: 1px
+
+.barcode-holder
+  td
+    height: 100px
+
+
+.header
+  color: $lighter-grey
+  font-size: 35px
+  padding-left: 50px
+
+.title
+  color: $white
+  font-size: 50px
+  padding-top: 50px
+  padding-left: 50px
+
+.break-line
+  width: 100%
+  height: 1px
+  background-color: $secondary
+
+

@@ -1,0 +1,59 @@
+
+@import '../../shared/variables.sass'
+
+body
+  background-color: $secondary
+
+.custom-container
+  background-color: $primary
+  border-radius: 10px
+  box-shadow: 3px 3px 6px $shadow
+
+.bg-image
+  border-radius: 10px 0px 0px 10px
+  background: url('../../assets/images/bg.jpg')
+  background-repeat: no-repeat
+  background-size: 100% 100%
+
+.bottom-pos
+  position: absolute
+  left: 15px
+  width: 100%
+  bottom: 0
+
+.space-between-content
+  display: flex
+  justify-content: space-between
+  margin: 0 auto
+  max-width: 600px
+  padding: 0% 15% 7% 15%
+
+@media screen and (max-width: 992px)
+  .bottom-pos
+    position: relative
+
+  .space-between-content
+    padding: 5% 0% 3% 0%
+
+  .container
+    margin: 0
+    width: 100%
+    max-width: 100%
+
+  .typing
+    font-size: 1.1rem !important
+
+  .space-between-content
+    padding-left: 1.2rem
+    padding-right: 1.2rem
+
+  .custom-container, .bg-image
+    border-radius: 0
+
+@media screen and ( max-width: 370px )
+
+.col.pt-5.pl-4
+  min-height: 110px
+
+.bg-image
+  padding-bottom: 0.5rem

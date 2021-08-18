@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+</head>
+
+<body>
+    <ngx-spinner></ngx-spinner>
+    <div class=" row pr-3 pl-3 p-2">
+        <p style="font-size: 22px" class="header-content pt-3 pb-1 pr-2 pl-3 special">
+            Join over 1 thousand movie lover and watch your favorite movies in our theatres.
+        </p>
+    </div>
+    <form #f="ngForm" autocomplete="off" (ngSubmit)="onSubmit(f)">
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3 " [ngClass]="{errorClass : (!fNameCtrl.valid && fNameCtrl.touched)}">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                    <input type="text" class="form-control" autocomplete="off" #fNameCtrl="ngModel" popover="This field is required." triggers="" [isOpen]="(!fNameCtrl.valid && fNameCtrl.touched && !fNameCtrl.value) || false" name="firstName" ngModel required autocomplete="off"
+                        placeholder="First Name">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3 " [ngClass]="{errorClass : (!lNameCtrl.valid && lNameCtrl.touched)}">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                    <input type="text" class="form-control" autocomplete="off" #lNameCtrl="ngModel" popover="This field is required." triggers="" [isOpen]="(!lNameCtrl.valid && lNameCtrl.touched && !lNameCtrl.value) || false" autocomplete="off" name="lastName" ngModel required
+                        placeholder="Last Name">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3 " [ngClass]="{errorClass : (!emailCtrl.valid && emailCtrl.touched)}">
+                    <fa-icon [icon]="faEnvelope "></fa-icon>
+                    <input type="email" class="form-control" #emailCtrl="ngModel" [popover]="(emailCtrl.value) ? 'Wrong input. Check your email.' : 'This field is required.'" triggers="" [isOpen]="(!emailCtrl.valid && emailCtrl.touched) || false" name="email" ngModel required
+                        autocomplete="off" placeholder="Email">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2">
+            <div class="col-12 col-md-8 offset-md-2 col-lg-12 offset-lg-0 pl-0">
+                <div class="input-group input-style m-2 pr-3 pl-3" [ngClass]="{errorClass : (!passCtrl.valid && passCtrl.touched)}">
+                    <fa-icon [icon]="faLock"></fa-icon>
+                    <input type="password" class="form-control" [popover]="(passCtrl.value) ? 'Password should be longer.' : 'This field is required.'" triggers="" minlength="6" [isOpen]="(!passCtrl.valid && passCtrl.touched) || false" #passCtrl="ngModel" name="password"
+                        ngModel required placeholder="Password">
+                </div>
+            </div>
+        </div>
+        <div class="row pr-3 pl-3 p-2 mx-auto">
+            <div class="col text-center">
+                <input type="submit" class="btn" [disabled]="!f.valid" value="Sign up">
+            </div>
+        </div>
+    </form>
+    <div class="row pr-3 pl-3 p-2 mx-auto">
+        <div class="col text-center">
+            <p class="pt-3"> Already have an account? <a routerLink="../login" class="signup">Login.</a></p>
+        </div>
+    </div>
+</body>
+
+</html>

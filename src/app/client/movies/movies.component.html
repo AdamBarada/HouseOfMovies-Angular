@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<ngx-spinner name="pageSpinner"></ngx-spinner>
+
+<body *ngIf="movies">
+    <app-header></app-header>
+    <ng-template #template>
+        <iframe width="100%" height="100%" [src]="currentTrailer | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </ng-template>
+    <section class="main-container">
+        <div class="container shadowing pb-3 mt-5">
+            <div class="row">
+                <div class="col-4">
+                    <p class="header-style p-3 m-0"> Movies <span>
+                  <svg class="svg-hint" (click) = "isEnabled = !isEnabled"  xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" width="24"><path d="M0 0h24v24H0z" fill="none"/><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-3.5h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+                </span></p>
+                </div>
+                <div class="col-8 my-auto">
+                    <p class="p-3 m-0 text-right text-hint" [class.text-show]="isEnabled" [class.text-remove]="!isEnabled"><span class="color-hint">Explore</span> our featured movies and <span class="color-hint">book</span> your favourite now!
+                    </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col break-line"></div>
+            </div>
+            <div *ngIf="searchString !== ''">
+                <div class="container pt-3">
+                    <div class="row pb-4">
+                        <div class="col-12">
+                            <p class="title">Search Results For {{searchString}} <span class="expand" *ngIf="searchMovies?.length !== 0 && searchMovies.length > 12" (click)="expandSearch()"> {{isExpandedSearch ? "See Less" : "See All"}} </span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="container pt-4">
+                    <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScrollSearch()">
+                        <div class="row positioning">
+                            <div class="col-2 mt-3 reposition" *ngFor="let movie of shownSearchMovies">
+                                <div class="wrapper-rounded-edges" (click)=" goToMovie(movie?.id)">
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 p-0">
+                                            <a routerLink="/{{movie.id}}">
+                                                <img src="{{movie?.portraitImg}}" class="rounded-edges img-fluid img-sizing">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row m-0 p-0 on-top">
+                                    <div class="col-6 text-left pl-3 pb-2 push-top">
+                                        <fa-icon [icon]="faPlayCircle " (click)="openModal(template, movie?.trailer) " class="icon" style="font-size:24px; "></fa-icon>
+                                    </div>
+                                    <div class="col-6 text-right pr-3 pb-2 push-top">
+                                        <fa-icon [icon]="faEye" class="icon" routerLink="/screenings" [queryParams]="{movie: movie?.title}" style="font-size:24px; "></fa-icon>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center push-top pt-1">
+                                    <p class="font-sm">{{movie?.title | shorten:10}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-12 text-center pb-0">
+                                <ngx-spinner bdColor="" name="loading1" size="default" color="#788DF8" type="ball-pulse-sync" [fullScreen]="false">
+                                </ngx-spinner>
+                            </div>
+                            <div class="col-12 text-center mt-0 pt-0" *ngIf="searchMovies?.length === 0">
+                                <p class="text-center m-0"> No search results for {{searchString}}. </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pt-4">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img (click)="goToMovie(movies[25]?.id)" src="{{movies[25]?.landscapeImg}}" class="img-fluid max-height img-navigate">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, movies[25]?.trailer)"></fa-icon> {{movies[25]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img (click)="goToMovie(movies[47]?.id)" src="{{movies[47]?.landscapeImg}}" class="img-fluid max-height img-navigate">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, movies[47]?.trailer)"></fa-icon> {{movies[47]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="wrapper-card">
+                            <img (click)="goToMovie(movies[35]?.id)" src="{{movies[35]?.landscapeImg}}" class="img-fluid max-height img-navigate">
+                            <div class="content-card">
+                                <p>
+                                    <span class="icon-bg"></span>
+                                    <fa-icon [icon]="faPlayCircle" class="icon" (click)="openModal(template, movies[35]?.trailer)"></fa-icon> {{movies[35]?.title}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container pt-5">
+                <div class="row">
+                    <div class="col-8">
+                        <p class="title">Trending & Noteworthy</p>
+                    </div>
+                    <div class="col-4">
+                        <p class="title">What's New</p>
+                    </div>
+                </div>
+            </div>
+            <div class="container pt-3">
+                <div class="row">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-3 reposition" *ngFor="let movie of shownMovies.slice(0,4)">
+                                <div class="wrapper-rounded-edges">
+                                    <div class="row m-0 p-0">
+                                        <div class="col-12 p-0">
+                                            <img (click)="goToMovie(movie?.id)" src="{{movie?.portraitImg}}" class="rounded-edges img-fluid img-sizing">
+                                        </div>
+                                    </div>
+                                    <div class="row m-0 p-0 on-top">
+                                        <div class="col-6 text-left pl-3 pb-2 push-top">
+                                            <fa-icon [icon]="faPlayCircle " (click)="openModal(template, movie?.trailer) " class="icon" style="font-size:24px; "></fa-icon>
+                                        </div>
+                                        <div class="col-6 text-right pr-3 pb-2 push-top">
+                                            <fa-icon [icon]="faEye " routerLink="/screenings" [queryParams]="{movie: movie?.title}" class="icon" style="font-size:24px; "></fa-icon>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12 text-center push-top pt-1">
+                                    <p class="font-sm">{{movie?.title | shorten:12}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <img (click)="goToMovie(movies[26]?.id)" style="cursor:pointer;" src="{{movies[26]?.landscapeImg}}" class="new-img">
+                    </div>
+                </div>
+                <div class="position-end">
+                    <div class="row pt-2">
+                        <div class="col-4 offset-8">
+                            <p class="pr-1 pl-1 font-sm" align="justify">Our pick for each week includes the most hyped and trending new movie, shown exclusively in our theatres. Take a look at it and you won't regret it!</p>
+                        </div>
+                    </div>
+                    <div class="row pt-1 pb-3 ">
+                        <div class="col break-line"></div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-8">
+                            <div class="row">
+                                <div class="col-6">
+                                    <img (click)="goToMovie(movies[30].id)" src="{{movies[30]?.landscapeImg}}" class="new-img rounded-edges" style="height: 100%;">
+                                </div>
+                                <div class="col-6 pt-1">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="title mb-1 w-100">{{movies[30]?.title}}
+                                                <fa-icon (click)="openModal(template, movies[30]?.trailer)" [icon]="faPlay" class="pl-3 play-btn"></fa-icon>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <p class="color-hint inline-p">{{movies[30]?.releaseDate | date:'y'}}</p>
+                                            <p class="color-hint inline-p pl-5">{{movies[30]?.duration}} mins</p>
+                                            <p class="color-hint inline-p pl-5">{{printCategories(movies[30].categories)}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row pt-3">
+                                        <div class="col-12">
+                                            <p class="font-sm" align="justify">{{movies[30]?.description | shorten: 200}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <button class="btn-custom " routerLink="/movies/{{movies[30]?.id}}"><fa-icon [icon]="faEye"></fa-icon> View Details </button>
+                                        </div>
+                                        <div class="col-6">
+                                            <button class="btn-custom" routerLink="/screenings" [queryParams]="{movie: movies[30]?.title}"><fa-icon [icon]="faEye"></fa-icon> View Screenings</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="row p-1">
+                                <div class="col-12">
+                                    <p class="title">Bestselling this week</p>
+                                </div>
+                                <div class="col-10 spacing pt-1">
+                                    <ol class="font-sm">
+                                        <li *ngFor="let movie of firstMovies;" class="ml-1">
+                                            <p class="font-sm">{{movie?.title | shorten:30}}</p>
+                                        </li>
+                                    </ol>
+                                </div>
+                                <div class="col-2 text-right pt-1 h-100">
+                                    <p class="font-sm" *ngFor="let movie of firstMovies">{{movie?.viewers}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-1 pb-3 ">
+                        <div class="col break-line"></div>
+                    </div>
+                    <div class="container ">
+                        <div class="row pb-4">
+                            <div class="col-12">
+                                <p class="title">Movies available in our theatres<span class="expand" (click)="expand()"> {{isExpanded ? "See Less" : "See All"}} </span></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="container ">
+                        <div class="search-results" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+                            <div class="row positioning">
+                                <div class="col-2 mt-3 reposition" *ngFor="let movie of shownMovies">
+                                    <div class="wrapper-rounded-edges" (click)="goToMovie(movie?.id)">
+                                        <div class="row m-0 p-0">
+                                            <div class="col-12 p-0">
+                                                <img src="{{movie?.portraitImg}}" class="rounded-edges img-fluid img-sizing">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row m-0 p-0 on-top">
+                                        <div class="col-6 text-left pl-3 pb-2 push-top">
+                                            <fa-icon [icon]="faPlayCircle " (click)="openModal(template, movie?.trailer) " class="icon" style="font-size:24px; "></fa-icon>
+                                        </div>
+                                        <div class="col-6 text-right pr-3 pb-2 push-top">
+                                            <fa-icon [icon]="faEye" class="icon" routerLink="/screenings" [queryParams]="{movie: movie?.title}" style="font-size:24px; "></fa-icon>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 text-center push-top pt-1">
+                                        <p class="font-sm">{{movie?.title | shorten:10}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12 text-center pb-0">
+                                    <ngx-spinner bdColor="" name="loading2" size="default" color="#788DF8" type="ball-pulse-sync" [fullScreen]="false">
+                                    </ngx-spinner>
+                                </div>
+                                <div class="col-12 text-center mt-0 pt-0" *ngIf="isBottom">
+                                    <p class="text-center m-0"> No more available movies to show. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row vh-100">
+            <div class="col-lg-10 offset-lg-1 my-auto">
+                <div class="row custom-container">
+                    <div class="col-lg-7 bg-image">
+                        <div class="row">
+                            <div class="col-8 col-sm-6 col-md-4 col-lg-6">
+                                <img class="img-fluid pt-3 pl-2" src="../../assets/images/logo.png">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col pt-5 pl-4">
+                                <ngx-typed-js [cursorColor]="['#2748ee']" [strings]="['More than 20 movie screenings per day.','Book your favorite movie online.','Pick your movie, your time, your day.']" [typeSpeed]="75" backDelay="500" [backSpeed]="25" loop=”true”>
+                                    <p class="typing pt-5" style="font-size:20px ">
+                                    </p>
+                                </ngx-typed-js>
+                            </div>
+                        </div>
+                        <div class="row bottom-pos ">
+                            <div class="col-12 space-between-content ">
+                                <a routerLink="/home">Home</a>
+                                <a routerLink="/screenings">Screenings</a>
+                                <a routerLink="/movies">Movies</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-5 my-auto ">
+                        <router-outlet style="height: 80vh "></router-outlet>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

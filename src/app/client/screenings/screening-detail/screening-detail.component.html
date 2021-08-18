@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <ng-template #template>
+        <iframe width="100%" height="100%" [src]="currentTrailer | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </ng-template>
+    <ng-template #template2>
+        <div class="modal-body mx-auto confirm-modal">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-1 ml-0 pl-0">
+                        <fa-icon [icon]="faCheckCircle" class="icon-success pr-2"></fa-icon>
+                    </div>
+                    <div class="col-11 my-auto">
+                        <p class="confirm-title pl-1">
+                            Reservation successful</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-11 offset-1">
+                        <p class="confirm-text pl-1"> Reservation was successfully made. Do you want to print your tickets? </p>
+                    </div>
+                </div>
+                <div class="row pb-2">
+                    <div class="col-5 offset-1">
+                        <button ngxPrint [useExistingCss]="true" printSectionId="ticket" class="button-confirm" (click)="confirm()">Print</button>
+                    </div>
+                    <div class="col-5 mr-2 pl-0">
+                        <button class="button-reject" (click)="decline()">Discard</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-template>
+    <app-header></app-header>
+    <ngx-spinner></ngx-spinner>
+    <section>
+        <div class="container shadowing pb-5">
+            <div class="row">
+                <div class="col-3 my-auto pt-3">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="{{screening?.movie?.portraitImg}}" class="img-fluid">
+                        </div>
+                    </div>
+                    <div class="container bg-color-secondary mb-2">
+                        <div class="row">
+                            <div class="col-12 text-center centered-class">
+                                <fa-icon [icon]="faPlayCircle" class="custom-icon p-0" style="cursor: pointer;" (click)="openModal(template, screening?.movie?.trailer)"></fa-icon>
+                                <div class="bg-overlay"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size">Director</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size">{{screening?.movie?.director}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size">Starring</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size"> {{screening?.movie?.cast}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size">Genre</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 pb-2">
+                                <p class="color-blue desc-size">{{printCategories(screening?.movie?.categories)}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pl-4 pt-2">
+                        <div class="col-7">
+                            <p> Seats Selected: </p>
+                        </div>
+                        <div class="col-5">
+                            <p>{{totalSeats}}</p>
+                        </div>
+                    </div>
+                    <div class="row pl-4">
+                        <div class="col-7">
+                            <p> Total Price: </p>
+                        </div>
+                        <div class="col-5">
+                            <p> {{totalPrice | currency}}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <button class="btn-custom" [class.disabled]="totalSeats == 0" [disabled]="totalSeats == 0" (click)="onAddReservation(template2)">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-9 p-0">
+                    <div class="container-fluid img-container" *ngIf="screening?.movie?.landscapeImg" [style.background]=" 'linear-gradient(rgba(0,0,0,.5) 0%, rgba(0,0,0,.85) 50%, rgba(0,0,0,1) 100% ), url(' + screening?.movie?.landscapeImg + ')' ">
+                        <div class="row pt-1">
+                            <div class="col-6 offset-1 my-auto">
+                                <p class="header-class">{{screening?.movie?.title}}</p>
+                            </div>
+                            <div class="col-4 p-0 offset-1 my-auto">
+                                <p class="align-text-bottom pr-3">
+                                    <fa-icon [icon]="faClock"></fa-icon> Duration: {{screening?.movie?.duration}} mins</p>
+                            </div>
+                        </div>
+                        <div class="row pt-3 pb-3">
+                            <div class="col-6 offset-1 my-auto">
+                                <div class="col-12 p-0 m-0">
+                                    <p>
+                                        <fa-icon [icon]="faCalendarAlt"></fa-icon> Date: {{screening?.date | date}}</p>
+                                </div>
+                            </div>
+                            <div class="col-4 offset-1 my-auto">
+                                <div class="row">
+                                    <div class="col-12 p-0 m-0">
+                                        <p class="pr-3">
+                                            <fa-icon [icon]="faStopwatch"></fa-icon> Show Time: {{screening?.date | date: 'shortTime'}}, {{screening?.room?.name}} </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row pt-5 pb-4">
+                        <div class="col-10 offset-1">
+                            <div class="content-test text-center">
+                                <p class="screen">S C R E E N</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row" *ngFor="let item of [].constructor(screening?.room?.nbRows); let i = index">
+                        <div class="col-10 offset-1 text-center spacing-class pt-1">
+                            <svg *ngFor="let item of [].constructor(screening?.room?.nbColumns); let j = index" (click)="onSelect(i,j)" [ngStyle]="setStyle(i,j)" version="1.0" xmlns="http://www.w3.org/2000/svg" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000"
+                                preserveAspectRatio="none">
+                              <g  transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+ stroke="none">
+<path class="svg" d="M1833 4360 c-116 -23 -234 -117 -287 -229 l-31 -66 -3 -973 c-3
+-1084 -7 -1011 67 -1032 24 -8 346 -10 1004 -8 l969 3 29 33 29 33 -2 972 -3
+972 -31 66 c-55 115 -165 201 -292 228 -63 13 -1382 14 -1449 1z"/>
+<path class="svg" d="M970 2823 c-8 -3 -27 -17 -42 -31 l-28 -26 0 -599 c0 -391 4 -605 10
+-618 21 -39 62 -49 192 -49 139 0 164 8 190 60 17 32 18 81 17 600 0 410 -3
+575 -12 600 -19 56 -59 70 -197 69 -63 0 -122 -3 -130 -6z"/>
+<path class="svg" d="M3872 2815 c-62 -28 -62 -23 -62 -652 0 -521 1 -571 18 -603 26 -52
+51 -60 190 -60 130 0 171 10 192 49 6 13 10 227 10 618 l0 599 -31 30 c-30 29
+-32 29 -157 32 -95 1 -135 -2 -160 -13z"/>
+<path class="svg" d="M1558 1834 c-42 -22 -48 -43 -48 -163 0 -102 2 -112 24 -138 l24 -28
+992 -3 992 -2 34 34 34 34 0 101 c0 111 -10 146 -51 167 -43 22 -1961 20
+-2001 -2z"/>
+<path class="svg" d="M924 1256 l-35 -35 3 -205 3 -206 28 -27 27 -28 1578 -3 c867 -1
+1592 0 1611 3 18 4 44 18 57 32 24 26 24 28 24 234 0 205 0 208 -24 236 l-24
+28 -1607 3 -1607 2 -34 -34z"/>
+                              </g>
+                            </svg>
+                        </div>
+                    </div>
+                    <div class="row pt-5">
+                        <div class="col-10 offset-1 text-center">
+                            <p>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg-selected" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="none">
+                                <g  transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+  <path d="M1833 4360 c-116 -23 -234 -117 -287 -229 l-31 -66 -3 -973 c-3
+  -1084 -7 -1011 67 -1032 24 -8 346 -10 1004 -8 l969 3 29 33 29 33 -2 972 -3
+  972 -31 66 c-55 115 -165 201 -292 228 -63 13 -1382 14 -1449 1z"/>
+  <path d="M970 2823 c-8 -3 -27 -17 -42 -31 l-28 -26 0 -599 c0 -391 4 -605 10
+  -618 21 -39 62 -49 192 -49 139 0 164 8 190 60 17 32 18 81 17 600 0 410 -3
+  575 -12 600 -19 56 -59 70 -197 69 -63 0 -122 -3 -130 -6z"/>
+  <path d="M3872 2815 c-62 -28 -62 -23 -62 -652 0 -521 1 -571 18 -603 26 -52
+  51 -60 190 -60 130 0 171 10 192 49 6 13 10 227 10 618 l0 599 -31 30 c-30 29
+  -32 29 -157 32 -95 1 -135 -2 -160 -13z"/>
+  <path d="M1558 1834 c-42 -22 -48 -43 -48 -163 0 -102 2 -112 24 -138 l24 -28
+  992 -3 992 -2 34 34 34 34 0 101 c0 111 -10 146 -51 167 -43 22 -1961 20
+  -2001 -2z"/>
+  <path d="M924 1256 l-35 -35 3 -205 3 -206 28 -27 27 -28 1578 -3 c867 -1
+  1592 0 1611 3 18 4 44 18 57 32 24 26 24 28 24 234 0 205 0 208 -24 236 l-24
+  28 -1607 3 -1607 2 -34 -34z"/>
+                                </g>
+                              </svg> Selected
+                                <svg xmlns="http://www.w3.org/2000/svg" width="512.000000pt" class="svg-available" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="none">
+                                  <g  transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+    <path d="M1833 4360 c-116 -23 -234 -117 -287 -229 l-31 -66 -3 -973 c-3
+    -1084 -7 -1011 67 -1032 24 -8 346 -10 1004 -8 l969 3 29 33 29 33 -2 972 -3
+    972 -31 66 c-55 115 -165 201 -292 228 -63 13 -1382 14 -1449 1z"/>
+    <path d="M970 2823 c-8 -3 -27 -17 -42 -31 l-28 -26 0 -599 c0 -391 4 -605 10
+    -618 21 -39 62 -49 192 -49 139 0 164 8 190 60 17 32 18 81 17 600 0 410 -3
+    575 -12 600 -19 56 -59 70 -197 69 -63 0 -122 -3 -130 -6z"/>
+    <path d="M3872 2815 c-62 -28 -62 -23 -62 -652 0 -521 1 -571 18 -603 26 -52
+    51 -60 190 -60 130 0 171 10 192 49 6 13 10 227 10 618 l0 599 -31 30 c-30 29
+    -32 29 -157 32 -95 1 -135 -2 -160 -13z"/>
+    <path d="M1558 1834 c-42 -22 -48 -43 -48 -163 0 -102 2 -112 24 -138 l24 -28
+    992 -3 992 -2 34 34 34 34 0 101 c0 111 -10 146 -51 167 -43 22 -1961 20
+    -2001 -2z"/>
+    <path d="M924 1256 l-35 -35 3 -205 3 -206 28 -27 27 -28 1578 -3 c867 -1
+    1592 0 1611 3 18 4 44 18 57 32 24 26 24 28 24 234 0 205 0 208 -24 236 l-24
+    28 -1607 3 -1607 2 -34 -34z"/>
+                                  </g>
+                                </svg> Available
+                                <svg xmlns="http://www.w3.org/2000/svg" class="svg-taken" width="512.000000pt" height="512.000000pt" viewBox="0 0 512.000000 512.000000" preserveAspectRatio="none">
+                                  <g  transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)" stroke="none">
+    <path d="M1833 4360 c-116 -23 -234 -117 -287 -229 l-31 -66 -3 -973 c-3
+    -1084 -7 -1011 67 -1032 24 -8 346 -10 1004 -8 l969 3 29 33 29 33 -2 972 -3
+    972 -31 66 c-55 115 -165 201 -292 228 -63 13 -1382 14 -1449 1z"/>
+    <path d="M970 2823 c-8 -3 -27 -17 -42 -31 l-28 -26 0 -599 c0 -391 4 -605 10
+    -618 21 -39 62 -49 192 -49 139 0 164 8 190 60 17 32 18 81 17 600 0 410 -3
+    575 -12 600 -19 56 -59 70 -197 69 -63 0 -122 -3 -130 -6z"/>
+    <path d="M3872 2815 c-62 -28 -62 -23 -62 -652 0 -521 1 -571 18 -603 26 -52
+    51 -60 190 -60 130 0 171 10 192 49 6 13 10 227 10 618 l0 599 -31 30 c-30 29
+    -32 29 -157 32 -95 1 -135 -2 -160 -13z"/>
+    <path d="M1558 1834 c-42 -22 -48 -43 -48 -163 0 -102 2 -112 24 -138 l24 -28
+    992 -3 992 -2 34 34 34 34 0 101 c0 111 -10 146 -51 167 -43 22 -1961 20
+    -2001 -2z"/>
+    <path d="M924 1256 l-35 -35 3 -205 3 -206 28 -27 27 -28 1578 -3 c867 -1
+    1592 0 1611 3 18 4 44 18 57 32 24 26 24 28 24 234 0 205 0 208 -24 236 l-24
+    28 -1607 3 -1607 2 -34 -34z"/>
+                                  </g>
+                                </svg> Taken
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <app-footer></app-footer>
+    <app-ticket id="ticket" style="display:none;" [reservation]="reservation"></app-ticket>
+</body>
+
+</html>

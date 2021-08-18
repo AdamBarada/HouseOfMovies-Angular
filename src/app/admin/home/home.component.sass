@@ -1,0 +1,98 @@
+@import '../../../shared/variables.sass'
+
+html,body
+  background-color: $secondary
+  color: $white !important
+
+section
+  position: relative
+  margin-left: 240px
+  padding-left: 1rem
+  transition: margin-left 500ms
+  min-height: 100vh
+
+.reposition
+  margin-bottom: -4.5rem
+
+.new-margin
+  margin-left: 60px
+
+.header-style
+  font-size: 24px
+
+.break-line
+  height: 1px
+  background-color: $secondary
+
+.svg-hint
+  fill: $blue
+  margin-top: -2px
+  margin-left: 20px
+  cursor: pointer
+
+.color-hint
+  color: $hint-color
+
+.text-hint
+  opacity: 0
+
+.font-sm
+  font-size: 0.9rem
+
+.align-middle
+  vertical-align: middle
+
+.background-primary
+  background-color: $primary
+
+.shadow
+  box-shadow: 3px 3px 6px $shadow !important
+
+.custom-size
+  height: calc(100% - 500px)
+  width: 100%
+  margin-right: 3.34%
+
+.rounded-edges
+  border-radius: 5px
+
+fa-icon
+  color: $blue
+  padding-right: 0.75rem
+
+.card-info
+  font-size: 1.2rem
+
+.color-success
+  color: $color-success
+
+@keyframes slideInFromRight
+  0%
+    transform: translateX(-50%)
+
+  100%
+    transform: translateX(0)
+
+.best-selling-img
+  width: 60px
+  height: 35px
+  border-radius: 5px
+  margin-right: 20px
+
+.display-inline
+  display: inline
+
+.text-show
+  opacity: 1
+  transition: opacity 0.8s ease-in
+  animation: 0.8s ease-out 0s 1 slideInFromRight forwards
+
+.text-remove
+  transition: opacity 0.5s ease-in
+
+.flex-height
+  display: flex
+  flex-direction: column
+
+::ng-deep .advanced-pie-legend .legend-items-container .legend-items .legend-item:hover
+  color: $hint-color !important

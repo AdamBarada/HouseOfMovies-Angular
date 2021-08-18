@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <ngx-spinner></ngx-spinner>
+    <app-header>
+    </app-header>
+    <section class="home" *ngIf="movie" [style.background]="'linear-gradient(rgba(0,0,0,0.4)0%,rgba(0, 0, 0, 0.5)50%, rgba(0,0,0,1) 100%), url(' + movie?.landscapeImg +')'">
+    </section>
+    <section class="content">
+        <div class="container-fluid padding-cust">
+            <div class="row">
+                <div class="col">
+                    <p class="header-class">{{movie?.title}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="custom-col">
+                    <p>
+                        <fa-icon [icon]="faClock" class="color-blue"></fa-icon>Duration: {{movie?.duration}} mins</p>
+                </div>
+                <div class="custom-col">
+                    <p>
+                        <fa-icon [icon]="faCalendarAlt" class="color-blue"></fa-icon>Year: {{movie?.releaseDate | date:'y'}}</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3 pt-2" style="padding-right: 50px;">
+                    <img class="img-fluid pres-img" src="{{movie?.portraitImg}}">
+                    <div class="wrapper m-0">
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size m-0">Director</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size">{{movie?.director}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size m-0">Starring</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size"> {{movie?.cast}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size m-0">Genre</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size">{{printCategories(movie?.categories)}}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="desc-size m-0">Release Date</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <p class="color-blue desc-size m-0">{{movie?.releaseDate | date}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col-12 pt-2">
+                            <button class="btn-custom" routerLink="/screenings" [queryParams]="{movie: movie?.title}"><fa-icon [icon]="faEye"></fa-icon> View Screenings</button>
+                        </div>
+                    </div>
+                    <div class="row pt-5 mr-0">
+                        <div class="col-12 mt-2 p-0">
+                            <h2 class="right"><span> Synopsis</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pt-3 pl-0">
+                            <p>{{movie?.description}}</p>
+                        </div>
+                    </div>
+                    <div class="row pt-5 mr-0">
+                        <div class="col-12 mt-2 p-0">
+                            <h2 class="right"><span> Trailer</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 p-5">
+                            <div class="iframe-container">
+                                <iframe [src]="movie?.trailer || '' | safe" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <app-footer>
+    </app-footer>
+</body>
+
+</html>

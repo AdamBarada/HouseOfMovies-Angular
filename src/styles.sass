@@ -1,1 +1,77 @@
-/* You can add global styles to this file, and also import other style files */
+@import './shared/variables.sass'
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.carousel'
+@import '~ngx-owl-carousel-o/lib/styles/scss/owl.theme.default'
+
+*,html,body
+  margin: 0
+  padding: 0
+
+p
+  color: $white
+
+a, a:focus, a:hover
+  color: $white !important
+
+fa-icon.ng-fa-icon
+  margin: auto
+  color: white
+
+a:hover, a:focus
+  text-decoration: none !important
+
+label
+  color: $white
+
+.popover
+  background-color: #000 !important
+
+.popover-body
+  color: $white !important
+
+.popover>.arrow:after
+  border-top-color: #000 !important
+
+.toast-container .ngx-toastr
+  box-shadow: 3px 3px 6px $shadow !important
+
+.bs-datepicker
+  background: $secondary !important
+  box-shadow: 3px 3px 6px $shadow !important
+  border: none !important
+
+.bs-datepicker-head
+  background: $hint-color !important
+
+.theme-green .bs-datepicker-body table td span.selected, .theme-green .bs-datepicker-body table td.selected span, .theme-green .bs-datepicker-body table td span[class*="select-"]:after, .theme-green .bs-datepicker-body table td[class*="select-"] span:after
+  background: $hint-color !important
+
+.bs-datepicker-body table td
+  color: $white !important
+
+.bs-datepicker-body table td span.is-other-month, .bs-datepicker-body table td.is-other-month span
+  color: $dark-gray !important
+
+.bs-datepicker-body
+  border: none !important
+
+.bs-datepicker-body table td.is-highlighted:not(.disabled):not(.selected) span, .bs-datepicker-body table td span.is-highlighted:not(.disabled):not(.selected)
+  background-color: $blue-focus !important
+
+.form-control[type="number"]::-webkit-inner-spin-button,
+.form-control[type="number"]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+::-webkit-scrollbar-track
+  background: #f1f1f1
+
+::-webkit-scrollbar-thumb
+  background: #888
+
+::-webkit-scrollbar
+  width: 10px
+  height: 5px
+
+::-webkit-validation-bubble
+  color: $white
+  background-color: black

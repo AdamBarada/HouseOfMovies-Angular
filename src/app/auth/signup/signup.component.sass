@@ -1,0 +1,55 @@
+@import '../../../shared/variables.sass'
+
+body
+  background-color: transparent
+
+p
+  color: white
+
+input
+  border: none !important
+  background-color: transparent !important
+  box-shadow: none !important
+  caret-color: $blue
+
+input[type=submit]
+  color: white
+  background-color: $blue !important
+  padding: 5px 20px 5px 20px
+
+.form-control
+  color: white
+
+.btn:disabled
+  color: $white !important
+  background: $dark-gray !important
+  cursor: not-allowed !important
+
+.input-style
+  background-color: transparent
+  border: 1px solid $secondary
+  border-radius: 5px
+  padding-top: 5px
+  padding-bottom: 5px
+
+.input-style:hover,
+.input-style:focus-within
+  border: 1px solid $blue
+
+.signup
+  color: $blue !important
+
+.errorClass,
+.errorClass:hover,
+.errorClass:focus-within
+  border: 1px solid red
+
+@media screen and (max-width: 992px)
+  p
+    margin-left: auto
+    margin-right: auto
+    text-align: center
+
+  .special
+    padding-top: 5rem !important
+    padding: 2rem !important

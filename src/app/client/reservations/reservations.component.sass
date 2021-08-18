@@ -1,0 +1,176 @@
+@import '../../../shared/variables.sass'
+
+html,body
+  background-color: $secondary
+
+section
+  padding-top: 100px
+  padding-bottom: 100px
+  min-height: calc( 100vh - 58.4px )
+
+button
+  background-color: transparent
+  outline: none
+  border: 0
+
+thead
+  background-color: $secondary
+
+th,td
+  color: $white
+  font-weight: 400
+  font-size: 16px
+  vertical-align: middle
+  text-align: center
+
+img
+  width: 80px
+  height: 45px
+  border-radius: 5px
+  margin-right: 20px
+
+.icon-holder
+  max-width: 50px
+  display: inline-block
+  margin: 4px
+
+.cust-icon
+  position: relative
+  z-index: 2
+
+fa-icon
+  cursor: pointer
+  color: $blue
+  font-size: 30px
+
+.movie-holder
+  text-align: left
+  padding-left: 30px
+
+.movie-header
+  text-align: left
+  padding-left: 90px
+
+.past
+  border-radius: 30px
+  background-color: $dark-gray
+  padding: 3px 10px 5px 10px
+
+.upcoming
+  border-radius: 30px
+  background-color: $color-success
+  padding: 3px 10px 5px 10px
+
+.container
+  background-color: $primary
+
+.shadowing
+  box-shadow: 6px 6px 4px $shadow
+  border-radius: 10px
+
+.header-style
+  font-size: 24px
+
+.break-line
+  height: 1px
+  background-color: $secondary
+
+.svg-hint
+  fill: $blue
+  margin-top: -2px
+  margin-left: 20px
+  cursor: pointer
+
+.color-hint
+  color: $hint-color
+
+.text-hint
+  opacity: 0
+
+.icon-danger
+  color: $danger
+  font-size: 30px
+  vertical-align: middle
+  padding: 0
+
+.confirm-title
+  display: inline-block
+  vertical-align: middle
+  font-size: 18px
+  margin: 0
+
+.button-confirm
+  background-color: $blue
+  padding: 8px 0px
+  color: $white
+  border: 2px solid $blue
+  width: 100%
+  border-radius: 10px
+  outline: none
+
+.button-reject
+  background-color: transparent
+  padding: 8px 0px
+  width: 100%
+  color: $dark-gray
+  border: 2px solid $dark-gray
+  border-radius: 10px
+  outline: none
+
+.confirm-text
+  vertical-align: middle
+  color: $dark-gray
+
+.confirm-modal
+  background-color: $primary
+  min-width: 400px
+  border-radius: 5px
+  padding: 16px 24px
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
+
+.text-show
+  opacity: 1
+  transition: opacity 0.8s ease-in
+  animation: 0.8s ease-out 0s 1 slideInFromRight forwards
+
+.text-remove
+  transition: opacity 0.5s ease-in
+
+@keyframes slideInFromRight
+  0%
+    transform: translateX(-50%)
+
+  100%
+    transform: translateX(0)
+
+table.dataTable tbody tr.odd
+  background-color: $primary
+  border-top: 1px $lighter-grey
+  border-bottom: 1px $lighter-grey
+  border-left: 0
+  border-right: 0
+
+table.dataTable tbody tr.even
+  background-color: $secondary
+  border: 0
+
+iframe
+  position: absolute
+  border-radius: 10px
+
+::ng-deep .modal-content
+  background-color: transparent
+  border: none
+  border-radius: 10px
+  padding-bottom: calc(100% * 9 / 16)
+  margin: auto
+  height: 0px
+  width: 100%
+
+@media (min-width: 576px)
+::ng-deep .modal-dialog
+  max-width: 50%
+  margin: 1.75rem auto
